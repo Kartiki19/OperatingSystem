@@ -1,25 +1,24 @@
                          
 
-    AUTHOR INFO 
-    -----------------------------------------------
+  **AUTHOR INFO**
+-----------------------------------------------
     Author Name : Kartiki Rajendra Dindorkar
 
-    Steps To Execute
-    -----------------------------------------------
-
-    2. Open the folder and run make file using command : make
-    3. It will create an executable file "PageReplacement"
-    4. Execute file using command : ./PageReplacement
-    5. After executing you will get 4 options to select from :
+**Steps To Execute**
+-----------------------------------------------
+    1. Open the folder and run make file using command : make
+    2. It will create an executable file "PageReplacement"
+    3. Execute file using command : ./PageReplacement
+    4. After executing you will get 4 options to select from :
         i. FIFO 5 Runs (1 min each)
         ii. FIFO 100 Page references
         iii. LRU 5 Runs (1 min each)
         iv. LRU 100 Page references
-    6. Please select the option you need to run.
+    5. Please select the option you need to run.
 
    
-    Results
-    -------
+**Results**
+-----------------
     1. Above execution will result in :
 
     kartikidindorkar@Kartikis-MacBook-Pro % make      
@@ -52,8 +51,8 @@
         d. Output_LRU_100_Reference : Output after running LRU algorithm for 100 page references
         c. Output_makeClean : Use of make clean to delete previous executable and run again
 
-    Notes
-    ----------
+**Notes**
+----------
     1. In the code, the arrival time is taken as processID*2 i.e., fro process number 50, arrival time is 100. Thus, the initial processList is already sorted as per arrival time. 
     2. In the Job Queue, processes are queued as per arrival time i.e., by process number (sequential).
     3. In FIFO as well as in LRU algorithm, if last page of the process is requested then following actions are taken :
