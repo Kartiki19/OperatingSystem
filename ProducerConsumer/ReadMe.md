@@ -1,33 +1,29 @@
-                                    COEN 283 Assignment 2
 
-    STUDENT INFO 
-    -----------------------------------------------
-    Student Name : Kartiki Rajendra Dindorkar
-    Student ID : W1651519
-    Email ID : kdindorkar@scu.edu
+ **AUTHOR INFO**
+ -----------------------------------------------
+ Author Name : Kartiki Rajendra Dindorkar
 
-    Steps To Execute
-    -----------------------------------------------
-    1. Unzip the given folder "W1651519"
-    2. Open the folder and run make file using command : make
-    3. It will create an executable file "prodcon"
-    4. Execute file using command : ./prodcon <NoOfConsumerThreads> <MaxNumberToBeGenerated>
-    5. Example : ./prodcon 3 6
-    6. Here, the second argument <MaxNumberToBeGenerated> should be greater than 5, as the buffer size is 5 and to test circular buffer, number of inputs should be greater than 5
-    7. If you executed only by running "./prodcon" (without any arguments) file. Then it will take following values as default :
+ **Steps To Execute**
+ -----------------------------------------------
+    1. Open the folder and run make file using command : make
+    2. It will create an executable file "prodcon"
+    3. Execute file using command : ./prodcon <NoOfConsumerThreads> <MaxNumberToBeGenerated>
+    4. Example : ./prodcon 3 6
+    5. Here, the second argument <MaxNumberToBeGenerated> should be greater than 5, as the buffer size is 5 and to test circular buffer, number of inputs should be greater than 5
+    6. If you executed only by running "./prodcon" (without any arguments) file. Then it will take following values as default :
         a. num_consumers = 2; /// Specify on cmd line; default is two. 
         b. max_number = 10; /// Specify on cmd line; default is ten
    
-    Results
-    -------
+**Results**
+--------------
     1. Above execution will result in :
 
-    kartikidindorkar@Kartikis-MacBook-Pro W1651519 % make
+    kartikidindorkar@Kartikis-MacBook-Pro % make
 
     g++ -std=c++11 -Wall -Wextra -pthread -c -o prodcon.o prodcon.cpp
     g++ -std=c++11 -Wall -Wextra -pthread -o prodcon prodcon.o
 
-    kartikidindorkar@Kartikis-MacBook-Pro W1651519 % ./prodcon 3 6
+    kartikidindorkar@Kartikis-MacBook-Pro % ./prodcon 3 6
 
     Producer wrote 0
     Producer wrote 1
@@ -50,27 +46,4 @@
         a. Output_1 : Running the program using make and arguments
         b. Output_default : Executing the program using previously generated executable and without any arguments (default arguments will be taken as 2 & 10)
         c. Output_makeClean : Use of make clean to delete previous executable and run again
-
-
-    Discussion
-    ----------
-
-    1. How many of each integer should you see printed?
-    Ans : This program will print the numbers from 0 to (<MaxNumberToBeGenerated> - 1)
-
-    2. In what order should you expect to see them printed? Why?
-    Ans : 
-    i. As the buffer size is 5, I expected that producer will write first 5 integers and then consumer will consume them.
-    ii. Similarly this will happen for next 5 numbers.
-    iii. Thus, I expected that the numbers will be produced in the batch of 5 and consumed in similar fashion
-
-
-    3. Did your results differ from your answers in (1) and (2)? Why or why not?
-    Ans :
-    i. As we are using semaphores and condition variables, once producer produces an integer, it leaves the critical section guarded by a mutex lock and broadcasts that a number is available for consumptio.
-    ii. Simultaneoulsy, consumer thread was waiting for signal and once producer sends the signal, Consumer goes and try to acquire lock on Circular buffer inorder to read the data.
-    iii. Thease are not atomic operations, thus whichever thread finishes it's work, waits for critical section to get unlocked.
-    iv. Thus, the result will be first producer will generate some numbers and once consumer gets signal and it's wait for critical section is over, it will read those numbers.
-    v. This switching will be done randomly. But consumer will consume only after producer has produced those intergers.
-
 
